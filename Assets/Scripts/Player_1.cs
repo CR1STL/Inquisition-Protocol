@@ -1,23 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 public class Player_1 : MonoBehaviour
 {
-    [SerializeField] public float _speed = 5f;
-    [SerializeField] public int HP = 3;
-    [SerializeField] private int Score = 0;
-    [SerializeField] public TMP_Text HP_Text;
-    [SerializeField] public TMP_Text ScoreText;
-    private Vector3 pos;
+    public float Speed;
+    public int HP;
+    private int Score;
+    public TMP_Text HP_Text;
+    public TMP_Text Score_Text;
+    private Vector3 Pos;
     private void Update()
     {
         HP_Text.text = "HP: " + HP;
-        ScoreText.text = "SCORE: " + Score.ToString();
-        float Horizontal = Input.GetAxis("Horizontal");
-        float Vertical = Input.GetAxis("Vertical");
-        pos = new Vector3(Horizontal, Vertical);
-        transform.Translate(pos.normalized * Time.deltaTime * _speed);
+        Score_Text.text = "SCORE: " + Score.ToString();
+        float Hor = Input.GetAxis("Horizontal");
+        float Ver = Input.GetAxis("Vertical");
+        Pos = new Vector3(Hor, Ver);
+        transform.Translate(Pos.normalized * Time.deltaTime * Speed);
     }
     public void ScoreUpd()
     {

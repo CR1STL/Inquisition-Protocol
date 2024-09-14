@@ -1,21 +1,21 @@
 using UnityEngine;
 public class Player_2 : MonoBehaviour
 {
-    private Vector2 _one;
-    private Vector2 _two;
-    private Transform _thisTransform;
-    private Camera _camera;
-    [SerializeField] public GameObject Bullet;
+    private Vector2 A;
+    private Vector2 B;
+    private Transform Transform;
+    private Camera Camera;
+    public GameObject Bullet;
     private void Start()
     {
-        _one = Vector2.right;
-        _camera = Camera.main;
-        _thisTransform = transform;
+        A = Vector2.right;
+        Camera = Camera.main;
+        Transform = transform;
     }
     private void Update()
     {
         float z = Z();
-        _thisTransform.rotation = Quaternion.Euler(0, 0, z);
+        Transform.rotation = Quaternion.Euler(0, 0, z);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, z));
@@ -23,23 +23,23 @@ public class Player_2 : MonoBehaviour
     }
     private float Z()
     {
-        _two = _camera.ScreenToWorldPoint(Input.mousePosition) - _thisTransform.position;
-        float scalarComposition = _one.x * _two.x + _one.y * _two.y;
-        float mudelesComposition = _one.magnitude * _two.magnitude;
-        float division = scalarComposition / mudelesComposition;
-        float angle = Mathf.Acos(division) * Mathf.Rad2Deg * (int)GetSide();
-        return angle;
+        B = Camera.ScreenToWorldPoint(Input.mousePosition) - Transform.position;
+        float SC = A.x * B.x + A.y * B.y;
+        float MC = A.magnitude * B.magnitude;
+        float x = SC / MC;
+        float Angle = Mathf.Acos(x) * Mathf.Rad2Deg * (int)side();
+        return Angle;
     }
     private enum Side
     {
-        Left = -1,
-        Right = 1
+        L = -1,
+        R = 1
     }
-    private Side GetSide()
+    private Side side()
     {
-        Side side = Side.Right;
-        if (_two.y <= _one.y)
-            side = Side.Left;
+        Side side = Side.R;
+        if (B.y <= A.y)
+            side = Side.L;
         return side;
     }
 }
