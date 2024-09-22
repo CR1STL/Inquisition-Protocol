@@ -16,7 +16,7 @@ public class Player_2 : MonoBehaviour
     {
         float z = Z();
         Transform.rotation = Quaternion.Euler(0, 0, z);
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, z));
         }

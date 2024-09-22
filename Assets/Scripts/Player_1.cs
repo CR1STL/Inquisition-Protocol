@@ -27,7 +27,8 @@ public class Player_1 : MonoBehaviour
         HP -= 1;
         if (HP < 1)
         {
-            SceneManager.LoadScene(0);
+            SceneAdvance.Instance.Death_Scene();
+            Time.timeScale = 1f;
         }
     }
 }

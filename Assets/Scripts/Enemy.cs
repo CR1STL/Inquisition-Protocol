@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
             Destroy(other.gameObject);
             GameObject.Find("Player").GetComponent<Player_1>().ScoreUpd();
+            Next_lvl.GetScore();
         }
 
         if (other.tag == "Player")
